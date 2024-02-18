@@ -41,6 +41,7 @@
             <div class="error-column">
                 <div class="inputAndButton">
                     <input type="text" name="task" id="task" placeholder="Votre tache...">
+                    <input type="date" name="date" id="date">
                     <button class="add">Ajouter</button>
                 </div>
                 {#if (errorMessage)}
@@ -53,6 +54,7 @@
         {#each todos as todo}
             <div class="todos">
                 <p class="todoName">{todo.taskName}</p>
+                <p class="todoDate">{todo.dateValue}</p>
                 <form class="formDelete" method="post" action="?/delete">
                     <input type="hidden" name="id" value="{todo.idValue}">
                     <button class="delete">Supprimer</button>
@@ -68,20 +70,19 @@
     .global {
         width: 100%;
         height: 100%;
-        padding-left: 2rem;
     }
 
     .menuBar {
         display: flex;
         flex-direction: column;
-        width: 100%;
         height: 20%;
         gap: 1rem;
+        padding-left: 2rem;
     }
 
     .toDo {
-        width: 100%;
         height: 80%;
+        padding-left: 2rem;
     }
 
     h1 {
@@ -106,7 +107,7 @@
         gap: 1rem;
     }
 
-    #task {
+    #task, #date {
         background-color: black;
         border: 1px solid white;
         color: white;
@@ -114,6 +115,10 @@
         font-family: Poppins, sans-serif;
         font-weight: 400;
         width: 20%;
+    }
+
+    #date {
+        width: 10%;
     }
 
     .inputAndButton {
@@ -153,7 +158,7 @@
         width: 100%;
     }
 
-    .todoName {
+    .todoName, .todoDate {
         color: white;
         border: 1px solid;
         width: 20%;
@@ -162,6 +167,10 @@
         font-family: Poppins, sans-serif;
         font-weight: 400;
         font-size: 0.75rem;
+    }
+
+    .todoDate {
+        width: 10%;
     }
 
     .formDelete {
