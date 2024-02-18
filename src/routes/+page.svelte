@@ -1,17 +1,34 @@
 <script lang="ts">
     import {page} from "$app/stores";
     import type {Todo} from "$lib/models/Todo";
+    import {browser} from "$app/environment";
+    import {onMount} from "svelte";
 
     let todos: Todo[] = [];
     let errorMessage = "";
+
+    onMount(() => {
+        taskOnLoad()
+    })
+
+    function taskOnLoad() {
+        let todoTake = localStorage.getItem("key");
+        if (todoTake != null)
+        todos = JSON.parse(todoTake)
+    }
+
+
 
     $: if ($page.form && $page.form.error) {
         errorMessage = $page.form.message
     }
 
-    $: if ($page.form && $page.form) {
+    $: if ($page.form) {
         todos = $page.form;
+    }
 
+    $: if ($page.form && browser) {
+        localStorage.setItem("key", JSON.stringify($page.form))
     }
 
 </script>
