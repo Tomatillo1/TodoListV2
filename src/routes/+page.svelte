@@ -42,6 +42,7 @@
                 <div class="inputAndButton">
                     <input type="text" name="task" id="task" placeholder="Votre tache...">
                     <input type="date" name="date" id="date">
+                    <input type="time" name="time" id="time">
                     <button class="add">Ajouter</button>
                 </div>
                 {#if (errorMessage)}
@@ -55,6 +56,7 @@
             <div class="todos">
                 <p class="todoName">{todo.taskName}</p>
                 <p class="todoDate">{todo.dateValue}</p>
+                <p class="todoTime">{todo.timeValue}</p>
                 <form class="formDelete" method="post" action="?/delete">
                     <input type="hidden" name="id" value="{todo.idValue}">
                     <button class="delete">Supprimer</button>
@@ -107,7 +109,7 @@
         gap: 1rem;
     }
 
-    #task, #date {
+    #task, #date, #time {
         background-color: black;
         border: 1px solid white;
         color: white;
@@ -119,6 +121,10 @@
 
     #date {
         width: 10%;
+    }
+
+    #time {
+        width: 5%;
     }
 
     .inputAndButton {
@@ -158,7 +164,7 @@
         width: 100%;
     }
 
-    .todoName, .todoDate {
+    .todoName, .todoDate, .todoTime {
         color: white;
         border: 1px solid;
         width: 20%;
@@ -171,6 +177,9 @@
 
     .todoDate {
         width: 10%;
+    }
+    .todoTime {
+        width: 5%;
     }
 
     .formDelete {

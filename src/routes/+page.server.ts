@@ -9,15 +9,17 @@ export const actions: Actions = {
         const formData = await request.formData();
         const task = formData.get('task') as string;
         const date = formData.get('date') as string;
+        const time =formData.get('time') as string;
         const id = crypto.randomUUID()
         const taskWithId: Todo = {
             taskName: task,
             dateValue: date,
+            timeValue: time,
             idValue: id
         }
 
-        if (task === '' && date === '') {
-            return fail(400, {error: true, message: 'Une tache et une date sont requises'});
+        if (task === '' && date === '' && time === '') {
+            return fail(400, {error: true, message: 'Tous les champs doivent être remplis'});
         }
 
         if (task === '') {
@@ -26,6 +28,10 @@ export const actions: Actions = {
 
         if (date === '') {
             return fail(400, {error: true, message: 'Une date est requise'});
+        }
+
+        if (time === '') {
+            return fail(400, {error: true, message: 'Une heure est requise'});
         }
 
         tasks.push(taskWithId)
